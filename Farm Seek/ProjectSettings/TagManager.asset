@@ -6,6 +6,8 @@ TagManager:
   tags:
   - fruit
   - hold
+  - Object
+  - Card
   layers:
   - Default
   - TransparentFX

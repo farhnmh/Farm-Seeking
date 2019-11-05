@@ -6,10 +6,11 @@ public class Object : MonoBehaviour
 {
     private GameObject postHold;
     private Transform holdpoint;
-    public float range = 5;
+    public float range = 0.1f;
     public float throwForce = 800;
     public float upperForce;
     bool carrying;
+    public float fruitNum;
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +23,35 @@ public class Object : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        switch (this.gameObject.name)
+        {
+            case "Fruits1(Clone)":
+                fruitNum = 1;
+                break;
+
+            case "Fruits2(Clone)":
+                fruitNum = 2;
+                break;
+
+            case "Fruits3(Clone)":
+                fruitNum = 3;
+                break;
+
+            case "Fruits4(Clone)":
+                fruitNum = 4;
+                break;
+
+        }
+
         if (carrying == false)
         {
-            if (Input.GetKeyDown(KeyCode.K) && (holdpoint.transform.position - transform.position).sqrMagnitude < range / range)
+            if (Input.GetKeyDown(KeyCode.K) && (holdpoint.transform.position - transform.position).sqrMagnitude < range)
             {
                 pickup();
                 carrying = true;
             }
+
+            Destroy(this.gameObject, 60f);
         }
         else if (carrying == true)
         {
@@ -48,6 +71,19 @@ public class Object : MonoBehaviour
                 carrying = false;
                 upperForce = 0;
             }
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        switch (col.gameObject.name)
+        {
+
+            case "Table":
+                Destroy(this.gameObject);
+                break;
+
         }
     }
 

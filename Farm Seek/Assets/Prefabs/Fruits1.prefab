@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7864134282990533708
+--- !u!1 &2687039804541034210
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7864134282990533681}
-  - component: {fileID: 7864134282990533680}
-  - component: {fileID: 7864134282990533683}
-  - component: {fileID: 7864134282990533682}
-  - component: {fileID: 7864134282990533709}
-  - component: {fileID: 2543690582307921638}
+  - component: {fileID: 2687039804541034233}
+  - component: {fileID: 2687039804541034238}
+  - component: {fileID: 2687039804541034239}
+  - component: {fileID: 2687039804541034236}
+  - component: {fileID: 2687039804541034237}
+  - component: {fileID: 5232483124599187908}
   m_Layer: 0
-  m_Name: Fruits4
+  m_Name: Fruits1
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7864134282990533681
+--- !u!4 &2687039804541034233
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7864134282990533708}
+  m_GameObject: {fileID: 2687039804541034210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.740591, y: -1.1417092, z: -5.126721}
+  m_LocalPosition: {x: 0.53940916, y: -1.1417092, z: -5.126721}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7864134282990533680
+--- !u!33 &2687039804541034238
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7864134282990533708}
+  m_GameObject: {fileID: 2687039804541034210}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7864134282990533683
+--- !u!23 &2687039804541034239
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7864134282990533708}
+  m_GameObject: {fileID: 2687039804541034210}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22345de17e99e9a4bb70e58a66c87da7, type: 2}
+  - {fileID: 2100000, guid: 065136ee35df9ff449a06d1d032d680b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,26 +81,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &7864134282990533682
+--- !u!135 &2687039804541034236
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7864134282990533708}
+  m_GameObject: {fileID: 2687039804541034210}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7864134282990533709
+--- !u!54 &2687039804541034237
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7864134282990533708}
+  m_GameObject: {fileID: 2687039804541034210}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -110,13 +110,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2543690582307921638
+--- !u!114 &5232483124599187908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7864134282990533708}
+  m_GameObject: {fileID: 2687039804541034210}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a597fe2f53f2cee4196ed0c64b93bd45, type: 3}

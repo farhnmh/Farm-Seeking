@@ -6,6 +6,7 @@ public class SpawnFruitCards : MonoBehaviour
 {
     //Prefab yang akan di-instantiate.
     public GameObject prefab1, prefab2, prefab3, prefab4;
+    public float cardNum;
 
 
     //Waktu spawn.
@@ -29,17 +30,22 @@ public class SpawnFruitCards : MonoBehaviour
             {
                 case 1:
                     Instantiate(prefab1, transform.position, Quaternion.identity);
+                    cardNum = 1;
                     break;
                 case 2:
                     Instantiate(prefab2, transform.position, Quaternion.identity);
+                    cardNum = 2;
                     break;
                 case 3:
                     Instantiate(prefab3, transform.position, Quaternion.identity);
+                    cardNum = 3;
                     break;
                 case 4:
                     Instantiate(prefab4, transform.position, Quaternion.identity);
+                    cardNum = 4;
                     break;
             }
+
 
             //set next spawn time
             nextSpawn = Time.time + spawnRate;
