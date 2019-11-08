@@ -29,7 +29,15 @@ public class Object : MonoBehaviour
                 fruitNum = 1;
                 break;
 
+            case "Apple(Clone)":
+                fruitNum = 1;
+                break;
+
             case "Fruits2(Clone)":
+                fruitNum = 2;
+                break;
+
+            case "Beet(Clone)":
                 fruitNum = 2;
                 break;
 
@@ -38,6 +46,10 @@ public class Object : MonoBehaviour
                 break;
 
             case "Fruits4(Clone)":
+                fruitNum = 4;
+                break;
+
+            case "Banana(Clone)":
                 fruitNum = 4;
                 break;
 
