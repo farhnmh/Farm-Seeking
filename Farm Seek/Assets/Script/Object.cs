@@ -6,6 +6,8 @@ public class Object : MonoBehaviour
 {
     private GameObject postHold;
     private Transform holdpoint;
+    private GameObject postHold2;
+    private Transform holdpoint2;
     public float range = 0.1f;
     public float throwForce = 800;
     public float upperForce;

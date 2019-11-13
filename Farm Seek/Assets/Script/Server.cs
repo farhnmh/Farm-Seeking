@@ -28,6 +28,7 @@ public class Server : MonoBehaviour
             server.Start();
 
             StartListening();
+            serverStarted = true;
         }
         catch (Exception e)
         {
@@ -40,7 +41,7 @@ public class Server : MonoBehaviour
         if (!serverStarted)
             return;
 
-        foreach(ServerClient c in clients)
+        foreach (ServerClient c in clients)
         {
             //is the client still connected
             if (!isConnected(c.tcp))
@@ -52,12 +53,12 @@ public class Server : MonoBehaviour
             else
             {
                 NetworkStream s = c.tcp.GetStream();
-                if(s.DataAvailable)
+                if (s.DataAvailable)
                 {
                     StreamReader reader = new StreamReader(s, true);
                     string data = reader.ReadLine();
-                    
-                    if(data != null)
+
+                    if (data != null)
                     {
                         OnIncomingData(c, data);
                     }
@@ -83,21 +84,27 @@ public class Server : MonoBehaviour
     {
         TcpListener listener = (TcpListener)ar.AsyncState;
 
+        string allusers = "";
+        foreach (ServerClient i in clients)
+        {
+            allusers += i.clientName + '|';
+        }
+
         ServerClient sc = new ServerClient(listener.EndAcceptTcpClient(ar));
         clients.Add(sc);
 
         StartListening();
 
-        Debug.Log("Somebody has connected");
+        Broadcast("SWHO|" + allusers, clients[clients.Count - 1]);
     }
 
     private bool isConnected(TcpClient c)
     {
         try
         {
-            if(c != null && c.Client != null && c.Client.Connected)
+            if (c != null && c.Client != null && c.Client.Connected)
             {
-                if(c.Client.Poll(0,SelectMode.SelectRead))
+                if (c.Client.Poll(0, SelectMode.SelectRead))
                 {
                     return !(c.Client.Receive(new byte[1], SocketFlags.Peek) == 0);
                 }
@@ -109,7 +116,8 @@ public class Server : MonoBehaviour
                 return false;
             }
 
-        } catch
+        }
+        catch
         {
             return false;
         }
@@ -118,7 +126,7 @@ public class Server : MonoBehaviour
     //server send
     private void Broadcast(string data, List<ServerClient> cl)
     {
-        foreach(ServerClient sc in cl)
+        foreach (ServerClient sc in cl)
         {
             try
             {
@@ -126,17 +134,33 @@ public class Server : MonoBehaviour
                 writer.WriteLine(data);
                 writer.Flush();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Debug.Log("Write Error : " + e.Message);
             }
         }
     }
 
+    private void Broadcast(string data, ServerClient c)
+    {
+        List<ServerClient> sc = new List<ServerClient> { c };
+        Broadcast(data, sc);
+    }
+
     //server read
     private void OnIncomingData(ServerClient c, string data)
     {
-        Debug.Log(c.clientName + " : " + data);
+        Debug.Log("Server : " + data);
+        string[] aData = data.Split('|');
+
+        switch (aData[0])
+        {
+            case "CWHO":
+                c.clientName = aData[1];
+                Broadcast("SCNN|" + c.clientName, clients);
+                break;
+        }
     }
 }
 

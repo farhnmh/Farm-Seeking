@@ -15,6 +15,8 @@ public class Client : MonoBehaviour
     private StreamWriter writer;
     private StreamReader reader;
 
+    private List<GameClient> players = new List<GameClient>();
+
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -73,7 +75,38 @@ public class Client : MonoBehaviour
     //Read messages from the server
     private void OnIncomingData(string data)
     {
-        Debug.Log(data);
+        Debug.Log("Client : " + data);
+        string[] aData = data.Split('|');
+
+        switch (aData[0])
+        {
+            case "SWHO":
+                for (int i = 1; i < aData.Length - 1; i++)
+                {
+                    UserConnected(aData[i], false);
+                }
+                Send("CWHO|" + clientName);
+                break;
+
+            case "SCNN":
+                UserConnected(aData[1], false);
+                break;
+
+
+        }
+    }
+
+    private void UserConnected(string name, bool host)
+    {
+        GameClient c = new GameClient();
+        c.name = name;
+
+        players.Add(c);
+
+        if(players.Count == 2)
+        {
+            GameManager.Instance.StartGame();
+        }
     }
 
     private void OnApplicationQuit()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
 
         mainMenu.SetActive(false);
         hostMenu.SetActive(true);
-        Debug.Log("Host");
+        //Debug.Log("Host");
     }
 
     public void ConnectToServerButton()
@@ -101,5 +102,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(c.gameObject);
         }
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("ContohAjaGan");
     }
 }

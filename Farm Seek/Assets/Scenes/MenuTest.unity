@@ -1539,7 +1539,7 @@ MonoBehaviour:
   connectMenu: {fileID: 30395534}
   serverPrefab: {fileID: 5611530563446324356, guid: e3aea0bd87c90f1448c68723498a30b0,
     type: 3}
-  clientPrefab: {fileID: 1618259191146636615, guid: af1c53c49d021944f87947286f8474ce,
+  clientPrefab: {fileID: 6065050015292856384, guid: af1c53c49d021944f87947286f8474ce,
     type: 3}
   nameInput: {fileID: 1460129062}
 --- !u!4 &1134405928
