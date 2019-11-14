@@ -8,6 +8,7 @@ TagManager:
   - hold
   - Object
   - Card
+  - hold2
   layers:
   - Default
   - TransparentFX
