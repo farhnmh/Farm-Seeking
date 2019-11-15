@@ -162,6 +162,10 @@ public class Server : MonoBehaviour
                 c.isHost = (aData[2] == "0") ? false : true;
                 Broadcast("SCNN|" + c.clientName, clients);
                 break;
+
+            case "CMOV":
+                Broadcast("SMOV|" + aData[1] + "|" + aData[2], clients);
+                break;
         }
     }
 }

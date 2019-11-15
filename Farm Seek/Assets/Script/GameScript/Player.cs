@@ -5,17 +5,24 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance { set; get; }
+    public float posY;
+    public float posZ;
     public bool player;
     public float movementSpeed = 5.0f;
     public float rotationSpeed = 200.0f;
     public static int point;
     public GameObject pointtext;
     [SerializeField] Text pointsCounterText;
+    private Client client;
 
     private void Start()
     {
-        Client c = FindObjectOfType<Client>();
-        player = c.isHost;
+        Instance = this;
+        posY = 0f;
+        posZ = 0f;
+        client = FindObjectOfType<Client>();
+        player = client.isHost;
         point = 0;
         pointsCounterText = pointtext.GetComponent<Text>();
     }
@@ -41,6 +48,15 @@ public class Player : MonoBehaviour
             {
                 transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed * -1);
             }
+
+            posY = this.gameObject.transform.position.y;
+            posZ = this.gameObject.transform.position.z;
+
+            string msg = "CMOV|";
+            msg += posY.ToString() + "|";
+            msg += posZ.ToString();
+
+            client.Send(msg);
         }
     }
 }
