@@ -163,8 +163,20 @@ public class Server : MonoBehaviour
                 Broadcast("SCNN|" + c.clientName, clients);
                 break;
 
-            case "CMOV":
-                Broadcast("SMOV|" + aData[1] + "|" + aData[2], clients);
+            case "MAJUP1":
+                Broadcast("SMAJUP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+
+            case "MUTERP1":
+                Broadcast("SMUTERP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+
+            case "BELAKANGP1":
+                Broadcast("SBELAKANGP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+
+            case "MUNDURP1":
+                Broadcast("SMUNDUR1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
                 break;
         }
     }

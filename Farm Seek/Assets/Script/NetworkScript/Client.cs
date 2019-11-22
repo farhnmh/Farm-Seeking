@@ -93,6 +93,21 @@ public class Client : MonoBehaviour
                 UserConnected(aData[1], false);
                 break;
 
+            case "SMAJUP1":
+                Player.Instance.Maju(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
+
+            case "SMUTERP1":
+                Player.Instance.Muter(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
+
+            case "SBELAKANGP1":
+                Player.Instance.Belakang(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
+
+            case "SMUNDURP1":
+                Player.Instance.Maju(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
 
         }
     }

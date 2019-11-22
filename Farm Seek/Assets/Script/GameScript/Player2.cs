@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Player2 : MonoBehaviour
 {
+    public static Player2 Instance { set; get; }
     public bool player2;
     public float movementSpeed = 5.0f;
     public float rotationSpeed = 200.0f;
@@ -15,6 +16,7 @@ public class Player2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         Client c = FindObjectOfType<Client>();
         player2 = c.isHost;
 
@@ -42,9 +44,11 @@ public class Player2 : MonoBehaviour
             {
                 transform.Translate(0, 0, Input.GetAxis("Vertical2") * Time.deltaTime * movementSpeed * -1);
             }
-        } else
-        {
-
         }
+    }
+
+    public void MoveTo(Vector3 pos)
+    {
+        transform.Translate(pos);
     }
 }

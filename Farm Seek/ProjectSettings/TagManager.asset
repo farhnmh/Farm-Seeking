@@ -9,6 +9,7 @@ TagManager:
   - Object
   - Card
   - hold2
+  - Player2
   layers:
   - Default
   - TransparentFX
