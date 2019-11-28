@@ -93,22 +93,38 @@ public class Client : MonoBehaviour
                 UserConnected(aData[1], false);
                 break;
 
+                //Player 1
             case "SMAJUP1":
                 Player.Instance.Maju(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
                 break;
-
-            case "SMUTERP1":
-                Player.Instance.Muter(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+            case "SBALIKP1":
+                Player.Instance.Balik(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
                 break;
-
-            case "SBELAKANGP1":
-                Player.Instance.Belakang(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
-                break;
-
             case "SMUNDURP1":
-                Player.Instance.Maju(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                Player.Instance.Mundur(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
+            case "SMUTERKANANP1":
+                Player.Instance.MuterKanan(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
+            case "SMUTERKIRIP1":
+                Player.Instance.MuterKiri(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
                 break;
 
+            case "SMAJUP2":
+                Player2.Instance.Maju(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
+            case "SBALIKP2":
+                Player2.Instance.Balik(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
+            case "SMUNDURP2":
+                Player2.Instance.Mundur(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
+            case "SMUTERKANANP2":
+                Player2.Instance.MuterKanan(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
+            case "SMUTERKIRIP2":
+                Player2.Instance.MuterKiri(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
         }
     }
 

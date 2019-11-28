@@ -137,6 +137,8 @@ public class Object : MonoBehaviour
         }
     }
 
+    //Player
+
     void pickup()
     {
         this.gameObject.GetComponent<Rigidbody>().useGravity = false;
@@ -162,6 +164,9 @@ public class Object : MonoBehaviour
         this.gameObject.GetComponent<Rigidbody>().AddForce(postHold.transform.up * upperForce);
         this.gameObject.GetComponent<Rigidbody>().AddForce(postHold.transform.forward * throwForce);
     }
+
+
+    //Player 2
 
     void pickup2()
     {
