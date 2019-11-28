@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,3 +28,34 @@ namespace UnityEditor.XR.Management
         internal CuratedInfo[] CuratedPackages = null;
     }
 }
+=======
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+using UnityEditor;
+
+using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.Serialization;
+
+namespace UnityEditor.XR.Management
+{
+    [Serializable]
+    internal class CuratedInfo
+    {
+        [SerializeField]
+        internal string MenuTitle = "";
+        [SerializeField]
+        internal string PackageName = "";
+        [SerializeField]
+        internal string LoaderTypeInfo = "";
+    }
+
+    internal sealed class XRCuratedPackages : ScriptableObject
+    {
+        [SerializeField]
+        internal CuratedInfo[] CuratedPackages = null;
+    }
+}
+>>>>>>> d7c7e4a905e041ffe305001e573a433cc87eb6b7

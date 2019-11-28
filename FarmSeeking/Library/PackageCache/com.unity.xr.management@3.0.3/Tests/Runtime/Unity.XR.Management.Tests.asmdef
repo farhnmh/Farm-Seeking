@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.XR.Management.Tests",
     "references": [
@@ -10,3 +11,17 @@
     "includePlatforms": [],
     "excludePlatforms": []
 }
+=======
+{
+    "name": "Unity.XR.Management.Tests",
+    "references": [
+        "Unity.XR.Management",
+        "Unity.XR.Management.Tests.Standalone"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}
+>>>>>>> d7c7e4a905e041ffe305001e573a433cc87eb6b7

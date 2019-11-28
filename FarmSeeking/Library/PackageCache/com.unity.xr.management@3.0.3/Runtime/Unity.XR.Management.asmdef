@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.XR.Management",
     "references": [],
@@ -9,4 +10,17 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": []
+=======
+{
+    "name": "Unity.XR.Management",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+>>>>>>> d7c7e4a905e041ffe305001e573a433cc87eb6b7
 }
