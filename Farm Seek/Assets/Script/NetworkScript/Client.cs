@@ -93,7 +93,13 @@ public class Client : MonoBehaviour
                 UserConnected(aData[1], false);
                 break;
 
-                //Player 1
+            case "SSPAWN":
+                int x = 0;
+                Int32.TryParse(aData[1], out x);
+                SpawnFruitCards.Instance.serverSpawn = x;
+                break;
+
+            //Player 1
             case "SMAJUP1":
                 Player.Instance.Maju(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
                 break;
@@ -125,6 +131,7 @@ public class Client : MonoBehaviour
             case "SMUTERKIRIP2":
                 Player2.Instance.MuterKiri(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
                 break;
+
         }
     }
 

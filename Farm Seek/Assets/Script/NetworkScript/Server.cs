@@ -163,7 +163,12 @@ public class Server : MonoBehaviour
                 Broadcast("SCNN|" + c.clientName, clients);
                 break;
 
-                //Player 1
+
+            case "SPAWN":
+                Broadcast("SSPAWN|" + aData[1], clients);
+                break;
+
+            //Player 1
             case "MAJUP1":
                 Broadcast("SMAJUP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
                 break;
