@@ -99,6 +99,12 @@ public class Client : MonoBehaviour
                 SpawnFruitCards.Instance.serverSpawn = x;
                 break;
 
+            case "SFRUITS":
+                int y = 0;
+                Int32.TryParse(aData[1], out y);
+                SpawnFruits.Instance.serverFruits = y;
+                break;
+
             //Player 1
             case "SMAJUP1":
                 Player.Instance.Maju(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));

@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class SpawnFruits : MonoBehaviour
 {
+
+    public static SpawnFruits Instance { set; get; }
+
+    //Client
+    private Client client;
+    public bool server;
+    public int serverFruits;
+
     //Prefab yang akan di-instantiate.
     public GameObject prefab1, prefab2, prefab3, prefab4, prefab5, prefab6, prefab7;
 
@@ -16,15 +24,16 @@ public class SpawnFruits : MonoBehaviour
     //Variabel yang memiliki nilai random.
     int whatToSpawn;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (Time.time > nextSpawn)
-        {
-            whatToSpawn = Random.Range(1, 8);
-            Debug.Log(whatToSpawn);
+        Instance = this;
+        client = FindObjectOfType<Client>();
+        server = client.isHost;
+        serverFruits = 1;
 
-            switch (whatToSpawn)
+        if (server == false || server == true)
+        {
+            switch (serverFruits)
             {
                 case 1:
                     Instantiate(prefab1, transform.position, Quaternion.identity);
@@ -48,7 +57,49 @@ public class SpawnFruits : MonoBehaviour
                     Instantiate(prefab7, transform.position, Quaternion.identity);
                     break;
             }
+        }
+        
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (Time.time > nextSpawn)
+        {
+            if(server == false)
+            {
+                whatToSpawn = Random.Range(1, 8);
+                client.Send("FRUITS|" + whatToSpawn);
+
+            }
+
+            Debug.Log("NumFr :" + serverFruits);
+
+
+            switch (serverFruits)
+            {
+                case 1:
+                    Instantiate(prefab1, transform.position, Quaternion.identity);
+                    break;
+                case 2:
+                    Instantiate(prefab2, transform.position, Quaternion.identity);
+                    break;
+                case 3:
+                    Instantiate(prefab3, transform.position, Quaternion.identity);
+                    break;
+                case 4:
+                    Instantiate(prefab4, transform.position, Quaternion.identity);
+                    break;
+                case 5:
+                    Instantiate(prefab5, transform.position, Quaternion.identity);
+                    break;
+                case 6:
+                    Instantiate(prefab6, transform.position, Quaternion.identity);
+                    break;
+                case 7:
+                    Instantiate(prefab7, transform.position, Quaternion.identity);
+                    break;
+            }
             //set next spawn time
             nextSpawn = Time.time + spawnRate;
         }

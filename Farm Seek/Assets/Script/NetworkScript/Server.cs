@@ -166,6 +166,16 @@ public class Server : MonoBehaviour
 
             case "SPAWN":
                 Broadcast("SSPAWN|" + aData[1], clients);
+                int x = 0;
+                Int32.TryParse(aData[1], out x);
+                SpawnFruitCards.Instance.serverSpawn = x;
+                break;
+
+            case "FRUITS":
+                Broadcast("SFRUITS|" + aData[1], clients);
+                int y = 0;
+                Int32.TryParse(aData[1], out y);
+                SpawnFruits.Instance.serverFruits = y;
                 break;
 
             //Player 1

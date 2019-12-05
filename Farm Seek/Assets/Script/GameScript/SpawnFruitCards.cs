@@ -31,8 +31,33 @@ public class SpawnFruitCards : MonoBehaviour
         Instance = this;
         client = FindObjectOfType<Client>();
         server = client.isHost;
-        serverSpawn = 0;
-        spawn();
+        serverSpawn = 1;
+
+        if (server == false)
+        {
+            switch (serverSpawn)
+            {
+                case 1:
+                    Instantiate(prefab1, transform.position, Quaternion.identity);
+                    cardNum = 1;
+                    break;
+                case 2:
+                    Instantiate(prefab2, transform.position, Quaternion.identity);
+                    cardNum = 2;
+                    break;
+                case 3:
+                    Instantiate(prefab3, transform.position, Quaternion.identity);
+                    cardNum = 3;
+                    break;
+                case 4:
+                    Instantiate(prefab4, transform.position, Quaternion.identity);
+                    cardNum = 4;
+                    break;
+            }
+        }
+            
+
+        Debug.Log("Card :" + cardNum);
     }
 
     // Update is called once per frame
@@ -41,33 +66,13 @@ public class SpawnFruitCards : MonoBehaviour
 
         if (Time.time > nextSpawn)
         {
-            int whatToSpawn;
-            whatToSpawn = Random.Range(1, 5);
-            client.Send("SPAWN|" + whatToSpawn);
 
-            if (server == false)
+            if (server == true)
             {
-                switch (serverSpawn)
-             {
-                 case 1:
-                     Instantiate(prefab1, transform.position, Quaternion.identity);
-                     cardNum = 1;
-                     break;
-                 case 2:
-                     Instantiate(prefab2, transform.position, Quaternion.identity);
-                     cardNum = 2;
-                     break;
-                 case 3:
-                     Instantiate(prefab3, transform.position, Quaternion.identity);
-                     cardNum = 3;
-                     break;
-                 case 4:
-                     Instantiate(prefab4, transform.position, Quaternion.identity);
-                     cardNum = 4;
-                     break;
-             }
-
-             }
+                int whatToSpawn;
+                whatToSpawn = Random.Range(1, 5);
+                client.Send("SPAWN|" + whatToSpawn);
+            }
 
             Debug.Log("NumSp :" + serverSpawn);
 
@@ -90,30 +95,9 @@ public class SpawnFruitCards : MonoBehaviour
                     cardNum = 4;
                     break;
             }
-             nextSpawn = Time.time + spawnRate;
-        }
-    }
 
-    public void spawn()
-    {
-        switch (serverSpawn)
-        {
-            case 1:
-                Instantiate(prefab1, transform.position, Quaternion.identity);
-                cardNum = 1;
-                break;
-            case 2:
-                Instantiate(prefab2, transform.position, Quaternion.identity);
-                cardNum = 2;
-                break;
-            case 3:
-                Instantiate(prefab3, transform.position, Quaternion.identity);
-                cardNum = 3;
-                break;
-            case 4:
-                Instantiate(prefab4, transform.position, Quaternion.identity);
-                cardNum = 4;
-                break;
+            Debug.Log("Card :" + cardNum);
+             nextSpawn = Time.time + spawnRate;
         }
     }
 }
