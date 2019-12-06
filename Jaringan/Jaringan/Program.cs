@@ -12,42 +12,36 @@ using System.Runtime.InteropServices;
 using System.Linq;
 using System.Threading.Tasks;
 
-struct data
+public struct data
 {
-    public string namePlayer;
-    public float xPlayer;
-    public float yPlayer;
-    public float zPlayer;
+
 }
 
 public static class counter
 {
     public static int numPlayer = 0;
+    public static string password;
+    public static string sendFile;
 }
 
-public class Server
+class Server
 {
-    public static void encryptCompress()
+    private static void encryptCompress()
     {
-        string startPath = @"Z:\Assets";
-        string zipPath = @"Z:\Assets.zip";
-
-        Console.Write(" [Input your file directory for compress] ");
-        startPath = Console.ReadLine();
-        zipPath = startPath + ".zip";
+        string startPath = @".\Must be downloaded\Assets";
+        string zipPath = @".\Must be downloaded\Assets.zip";
 
         ZipFile.CreateFromDirectory(startPath, zipPath);
         Console.WriteLine(" [The file compressed successfully]");
 
         string startFilePath = zipPath;
-        string endFilePath = @"Z:\Assets-enc";
-        string sendFile = endFilePath;
-
-        endFilePath = startPath + "-enc";
+        string endFilePath = @".\Must be downloaded\Assets-enc";
+        counter.sendFile = endFilePath;
 
         Random rnd = new Random();
         int pass = rnd.Next();
         string secretKey = pass.ToString();
+        counter.password = secretKey;
 
         EncryptFile(startFilePath, endFilePath, secretKey);
         Console.WriteLine(" [The file encrypted successfully with pass : " + secretKey + "]");
@@ -66,16 +60,44 @@ public class Server
             StreamWriter writer = new StreamWriter(client.GetStream());
 
             if (ke == 1) {
-                Console.WriteLine(" [" + ke + "st joined}");
+                Console.WriteLine(" [" + ke + "st joined]");
             }
-            if (ke == 2)
+            else if (ke == 2)
             {
-                Console.WriteLine(" [" + ke + "nd joined}");
+                Console.WriteLine(" [" + ke + "nd joined]");
             }
+
+            writer.WriteLine(counter.password);
+            writer.WriteLine("Assets-enc");
+
+            byte[] bytes = File.ReadAllBytes(counter.sendFile);
+
+            writer.WriteLine(bytes.Length.ToString());
+            writer.Flush();
+
+            writer.WriteLine(counter.sendFile);
+            writer.Flush();
+
+            if (ke == 1) {
+                Console.WriteLine(" [Sending file to 1st player]");
+            }
+            else if (ke == 2)
+            {
+                Console.WriteLine(" [Sending file to 2nd player]");
+            }
+
+            client.Client.SendFile(counter.sendFile);
         }
         catch (IOException)
         {
-            Console.WriteLine("\n [There's Client Out...]");
+            if (ke == 1)
+            {
+                Console.WriteLine(" [" + ke + "st exit]");
+            }
+            else if (ke == 2)
+            {
+                Console.WriteLine(" [" + ke + "nd exit]");
+            }
         }
         if (client != null)
         {
@@ -87,22 +109,20 @@ public class Server
     {
         TcpListener listener = null;
         encryptCompress();
-
+        
         try
         {
             listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 8080);
             listener.Start();
 
-            Console.WriteLine(" [Starting...]");
+            Console.WriteLine("\n [Starting Server...]");
 
             while (counter.numPlayer <= 2)
             {
                 TcpClient client = listener.AcceptTcpClient();
-                Console.WriteLine(" [There's Client Join...]");
                 Thread newThread = new Thread(FarmSeek);
-
-                counter.numPlayer++;
                 newThread.Start(client);
+                counter.numPlayer++;
             }
         }
 

@@ -17,19 +17,67 @@ using System.Threading.Tasks;
 
 public class DownloadScript : MonoBehaviour
 {
+    public bool downloaded = false;
+
     public void Main() {
         try
         {
+            Debug.Log("open");
             TcpClient client = new TcpClient("127.0.0.1", 8080);
             Debug.Log("Connected to Server");
 
             StreamReader reader = new StreamReader(client.GetStream());
             StreamWriter writer = new StreamWriter(client.GetStream());
 
-            while (true)
-            {
+            string pass = reader.ReadLine();
+            string fileName = reader.ReadLine();
+            string cmdFileSize = reader.ReadLine();
+            string cmdFileName = reader.ReadLine();
 
+            int length = Convert.ToInt32(cmdFileSize);
+            byte[] buffer = new byte[length];
+            int received = 0;
+            int read = 0;
+            int size = 1024;
+            int remaining = 0;
+
+            while (received < length)
+            {
+                remaining = length - received;
+                if (remaining < size)
+                {
+                    size = remaining;
+                }
+
+                read = client.GetStream().Read(buffer, received, size);
+                received += read;
             }
+
+            using (FileStream fStream = new FileStream(Path.GetFileName(cmdFileName), FileMode.Create))
+            {
+                fStream.Write(buffer, 0, buffer.Length);
+                fStream.Flush();
+                fStream.Close();
+            }
+
+            Debug.Log("File received and saved in " + Environment.CurrentDirectory);
+
+            int unicode = 92;
+            char character = (char)unicode;
+            string text = character.ToString();
+
+            string zipPath = Environment.CurrentDirectory + text + fileName;
+            string startFilePath = zipPath;
+            Debug.Log(zipPath);
+
+            string endFilePath = @".\Assets.zip";
+            string extractPath = @".\AssetsReceived";
+            DecryptFile(startFilePath, endFilePath, pass);
+
+            Debug.Log("File decrypted successfully with pass : " + pass);
+            Debug.Log("File extracted successfully in " + extractPath);
+            ZipFile.ExtractToDirectory(endFilePath, extractPath);
+            downloaded = true;
         }
         catch (Exception e)
         {
@@ -66,7 +114,6 @@ public class DownloadScript : MonoBehaviour
 
         return decryptedBytes;
     }
-
     public static void DecryptFile(string fileEncrypted, string file, string password)
     {
         byte[] bytesToBeDecrypted = File.ReadAllBytes(fileEncrypted);
