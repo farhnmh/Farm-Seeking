@@ -163,20 +163,52 @@ public class Server : MonoBehaviour
                 Broadcast("SCNN|" + c.clientName, clients);
                 break;
 
+
+            case "SPAWN":
+                Broadcast("SSPAWN|" + aData[1], clients);
+                int x = 0;
+                Int32.TryParse(aData[1], out x);
+                SpawnFruitCards.Instance.serverSpawn = x;
+                break;
+
+            case "FRUITS":
+                Broadcast("SFRUITS|" + aData[1], clients);
+                int y = 0;
+                Int32.TryParse(aData[1], out y);
+                SpawnFruits.Instance.serverFruits = y;
+                break;
+
+            //Player 1
             case "MAJUP1":
                 Broadcast("SMAJUP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
                 break;
-
-            case "MUTERP1":
-                Broadcast("SMUTERP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+            case "BALIKP1":
+                Broadcast("SBALIKP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
                 break;
-
-            case "BELAKANGP1":
-                Broadcast("SBELAKANGP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
-                break;
-
             case "MUNDURP1":
-                Broadcast("SMUNDUR1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                Broadcast("SMUNDURP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+            case "MUTERKANANP1":
+                Broadcast("SMUTERKANANP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+            case "MUTERKIRIP1":
+                Broadcast("SMUTERKIRIP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+
+            case "MAJUP2":
+                Broadcast("SMAJUP2|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+            case "BALIKP2":
+                Broadcast("SBALIKP2|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+            case "MUNDURP2":
+                Broadcast("SMUNDURP2|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+            case "MUTERKANANP2":
+                Broadcast("SMUTERKANANP2|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+            case "MUTERKIRIP2":
+                Broadcast("SMUTERKIRIP2|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
                 break;
         }
     }

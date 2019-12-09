@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.XR.Management.EditorTests",
     "references": [
@@ -13,3 +14,20 @@
     ],
     "excludePlatforms": []
 }
+=======
+{
+    "name": "Unity.XR.Management.EditorTests",
+    "references": [
+        "Unity.XR.Management.Editor",
+        "Unity.XR.Management",
+        "Unity.XR.Management.Tests.Standalone"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
+>>>>>>> d7c7e4a905e041ffe305001e573a433cc87eb6b7

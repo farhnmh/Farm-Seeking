@@ -31,12 +31,6 @@ public class Player : MonoBehaviour
         if (player == false)
         {
             pointsCounterText.text = point.ToString();
-            transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed, 0);
-            float x1 = 0;
-            float y1 = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;
-            float z1 = 0;
-
-            client.Send("MUTERP1|" + x1 + "|" + y1 + "|" + z1);
             //transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
 
             if (Input.GetKey(KeyCode.W))
@@ -47,13 +41,14 @@ public class Player : MonoBehaviour
                 float z = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
                 client.Send("MAJUP1|" + x + "|" + y + "|" + z);
             }
+
             if (Input.GetKeyDown(KeyCode.S))
             {
                 transform.Rotate(0, transform.rotation.y + 180, 0);
                 float x = 0;
-                float y = transform.rotation.y;
+                float y = transform.rotation.y + 180;
                 float z = 0;
-                client.Send("BELAKANGP1|" + x + "|" + y + "|" + z);
+                client.Send("BALIKP1|" + x + "|" + y + "|" + z);
             }
             if (Input.GetKey(KeyCode.S))
             {
@@ -63,19 +58,64 @@ public class Player : MonoBehaviour
                 float z = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed * -1;
                 client.Send("MUNDURP1|" + x + "|" + y + "|" + z);
             }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed, 0);
+                float x = 0;
+                float y = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;
+                float z = 0;
+                client.Send("MUTERKANANP1|" + x + "|" + y + "|" + z);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed, 0);
+                float x = 0;
+                float y = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;
+                float z = 0;
+                client.Send("MUTERKIRIP1|" + x + "|" + y + "|" + z);
+            }
         }
     }
+
     public void Maju(Vector3 pos)
     {
-        transform.Translate(pos);
+        if (player == true)
+        {
+            transform.Translate(pos);
+        }
     }
 
-    public void Muter(Vector3 ros)
+    public void Balik(Vector3 pos)
     {
-        transform.Rotate(ros);
+        if (player == true)
+        {
+            transform.Rotate(pos);
+        }
     }
-    public void Belakang(Vector3 cos)
+
+    public void Mundur(Vector3 pos)
     {
-        transform.Rotate(cos);
+        if (player == true)
+        {
+            transform.Translate(pos);
+        }
     }
+
+    public void MuterKanan(Vector3 pos)
+    {
+        if (player == true)
+        {
+            transform.Rotate(pos);
+        }
+    }
+
+    public void MuterKiri(Vector3 pos)
+    {
+        if (player == true)
+        {
+            transform.Rotate(pos);
+        }
+    }
+
 }

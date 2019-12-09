@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Object : MonoBehaviour
 {
+    //Jaringan
+    private Client client;
+    public bool server;
+    public static Object Instance { set; get; }
+
     private GameObject postHold;
     private Transform holdpoint;
     private GameObject postHold2;
@@ -21,6 +26,11 @@ public class Object : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Jaringan
+        Instance = this;
+        client = FindObjectOfType<Client>();
+        server = client.isHost;
+        
         this.gameObject.GetComponent<Rigidbody>().useGravity = true;
         postHold = GameObject.FindGameObjectWithTag("hold");
         holdpoint = postHold.GetComponent<Transform>();
@@ -137,6 +147,8 @@ public class Object : MonoBehaviour
         }
     }
 
+    //Player
+
     void pickup()
     {
         this.gameObject.GetComponent<Rigidbody>().useGravity = false;
@@ -162,6 +174,9 @@ public class Object : MonoBehaviour
         this.gameObject.GetComponent<Rigidbody>().AddForce(postHold.transform.up * upperForce);
         this.gameObject.GetComponent<Rigidbody>().AddForce(postHold.transform.forward * throwForce);
     }
+
+
+    //Player 2
 
     void pickup2()
     {
