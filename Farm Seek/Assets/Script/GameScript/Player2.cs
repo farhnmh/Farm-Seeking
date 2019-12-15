@@ -30,7 +30,7 @@ public class Player2 : MonoBehaviour
     {
         if (player2 == true)
         {
-            pointsCounterText.text = point.ToString();
+            //pointsCounterText.text = point.ToString();
             //transform.Rotate(0, Input.GetAxis("Horizontal2") * Time.deltaTime * rotationSpeed, 0);
 
             if (Input.GetKey(KeyCode.W))
@@ -76,6 +76,23 @@ public class Player2 : MonoBehaviour
                 c.Send("MUTERKIRIP2|" + x + "|" + y + "|" + z);
             }
         }
+    }
+
+    public void addPoint(int p)
+    {
+        if (player2 == true)
+        {
+            point += p;
+            p = 0;
+            pointsCounterText.text = point.ToString();
+        }
+        else if (player2 == false)
+        {
+            point += p;
+            p = 0;
+            pointsCounterText.text = point.ToString();
+        }
+
     }
 
     public void Maju(Vector3 pos)

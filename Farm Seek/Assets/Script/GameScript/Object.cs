@@ -23,6 +23,9 @@ public class Object : MonoBehaviour
     bool carrying2;
     public float fruitNum;
 
+    //Kondisi melempar
+    public bool melempar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -156,6 +159,8 @@ public class Object : MonoBehaviour
         this.gameObject.transform.position = holdpoint.transform.position;
         this.gameObject.transform.rotation = holdpoint.transform.rotation;
         this.gameObject.transform.parent = postHold.transform;
+
+        melempar = false;
     }
     void drop()
     {
@@ -173,6 +178,8 @@ public class Object : MonoBehaviour
 
         this.gameObject.GetComponent<Rigidbody>().AddForce(postHold.transform.up * upperForce);
         this.gameObject.GetComponent<Rigidbody>().AddForce(postHold.transform.forward * throwForce);
+
+        melempar = true;
     }
 
 

@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p: {fileID: 787168398}
-  p2: {fileID: 0}
+  p2: {fileID: 1454182132}
   c: {fileID: 759449440}
 --- !u!1 &759449439
 GameObject:

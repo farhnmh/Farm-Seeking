@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
     {
         if (player == false)
         {
-            pointsCounterText.text = point.ToString();
             //transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
 
             if (Input.GetKey(KeyCode.W))
@@ -76,6 +75,23 @@ public class Player : MonoBehaviour
                 client.Send("MUTERKIRIP1|" + x + "|" + y + "|" + z);
             }
         }
+    }
+
+    public void addPoint(int p)
+    {
+        if (player == true)
+        {
+            point += p;
+            p = 0;
+            pointsCounterText.text = point.ToString();
+        }
+        else if(player == false)
+        {
+            point += p;
+            p = 0;
+            pointsCounterText.text = point.ToString();
+        }
+
     }
 
     public void Maju(Vector3 pos)

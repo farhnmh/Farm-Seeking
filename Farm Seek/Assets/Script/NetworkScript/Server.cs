@@ -156,13 +156,20 @@ public class Server : MonoBehaviour
         string[] aData = data.Split('|');
 
         switch (aData[0])
-        {
+        { 
             case "CWHO":
                 c.clientName = aData[1];
                 c.isHost = (aData[2] == "0") ? false : true;
                 Broadcast("SCNN|" + c.clientName, clients);
                 break;
 
+            case "POINT":
+                Broadcast("SPOINT|" + aData[1], clients);
+                break;
+
+            case "POINT2":
+                Broadcast("SPOINT2|" + aData[1], clients);
+                break;
 
             case "SPAWN":
                 Broadcast("SSPAWN|" + aData[1], clients);

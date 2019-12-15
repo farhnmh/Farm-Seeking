@@ -93,6 +93,18 @@ public class Client : MonoBehaviour
                 UserConnected(aData[1], false);
                 break;
 
+            case "SPOINT":
+                int z = 0;
+                Int32.TryParse(aData[1], out z);
+                Player.Instance.addPoint(z);
+                break;
+
+            case "SPOINT2":
+                int a = 0;
+                Int32.TryParse(aData[1], out a);
+                Player2.Instance.addPoint(a);
+                break;
+
             case "SSPAWN":
                 int x = 0;
                 Int32.TryParse(aData[1], out x);

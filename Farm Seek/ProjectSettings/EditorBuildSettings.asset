@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ContohAjaGan.unity
     guid: 0abc2f81a2f2e3545982d6992750eb6c
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 16f21d01c270e2442ba75fb2a6a84e2a
   m_configObjects: {}
