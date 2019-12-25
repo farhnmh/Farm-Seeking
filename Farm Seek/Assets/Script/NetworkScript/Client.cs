@@ -134,6 +134,18 @@ public class Client : MonoBehaviour
                 Player.Instance.MuterKiri(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
                 break;
 
+            case "SPICK1":
+                Object.Instance.pick1(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])), Boolean.Parse(aData[4]), Boolean.Parse(aData[5]));
+
+                break;
+            case "SDROP1":
+                Object.Instance.drop1(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])), Boolean.Parse(aData[4]), Boolean.Parse(aData[5]));
+                break;
+            case "STHROW1":
+                Object.Instance.throw1(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])), Boolean.Parse(aData[4]), Boolean.Parse(aData[5]));
+                break;
+
+            //Player 2
             case "SMAJUP2":
                 Player2.Instance.Maju(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
                 break;
@@ -148,6 +160,17 @@ public class Client : MonoBehaviour
                 break;
             case "SMUTERKIRIP2":
                 Player2.Instance.MuterKiri(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])));
+                break;
+
+            case "SPICK2":
+                Object.Instance.pick2(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])), Boolean.Parse(aData[4]), Boolean.Parse(aData[5]));
+
+                break;
+            case "SDROP2":
+                Object.Instance.drop2(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])), Boolean.Parse(aData[4]), Boolean.Parse(aData[5]));
+                break;
+            case "STHROW2":
+                Object.Instance.throw2(new Vector3(float.Parse(aData[1]), float.Parse(aData[2]), float.Parse(aData[3])), Boolean.Parse(aData[4]), Boolean.Parse(aData[5]));
                 break;
 
         }

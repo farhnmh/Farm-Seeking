@@ -108,7 +108,7 @@ public class Object : MonoBehaviour
 
         if (carrying2 == false)
         {
-            if (Input.GetKeyDown(KeyCode.O) && (holdpoint2.transform.position - transform.position).sqrMagnitude < range)
+            if (Input.GetKeyDown(KeyCode.T) && (holdpoint2.transform.position - transform.position).sqrMagnitude < range)
             {
                 pickup2();
                 carrying2 = true;
@@ -118,17 +118,17 @@ public class Object : MonoBehaviour
         }
         else if (carrying2 == true)
         {
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.T))
             {
                 drop2();
                 carrying2 = false;
             }
 
-            if (Input.GetKey(KeyCode.P) && upperForce <= 250)
+            if (Input.GetKey(KeyCode.Y) && upperForce <= 250)
             {
                 upperForce += 5;
             }
-            if (Input.GetKeyUp(KeyCode.P))
+            if (Input.GetKeyUp(KeyCode.Y))
             {
                 throwy2();
                 carrying2 = false;
@@ -160,6 +160,7 @@ public class Object : MonoBehaviour
         this.gameObject.transform.rotation = holdpoint.transform.rotation;
         this.gameObject.transform.parent = postHold.transform;
 
+        client.Send("PICK1|" + this.gameObject.transform.position.x + "|" + this.gameObject.transform.position.y + "|" + this.gameObject.transform.position.z + "|" + this.gameObject.GetComponent<Rigidbody>().useGravity + "|" + this.gameObject.GetComponent<Rigidbody>().isKinematic);
         melempar = false;
     }
     void drop()
@@ -168,6 +169,13 @@ public class Object : MonoBehaviour
         this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         this.gameObject.transform.parent = null;
         this.gameObject.transform.position = holdpoint.transform.position;
+
+
+        melempar = true;
+
+        client.Send("DROP1|" + holdpoint.transform.position.x + "|" + holdpoint.transform.position.y + "|" + holdpoint.transform.position.z + "|" + this.gameObject.GetComponent<Rigidbody>().useGravity + "|" + this.gameObject.GetComponent<Rigidbody>().isKinematic);
+
+        
     }
     void throwy()
     {
@@ -180,8 +188,50 @@ public class Object : MonoBehaviour
         this.gameObject.GetComponent<Rigidbody>().AddForce(postHold.transform.forward * throwForce);
 
         melempar = true;
+
+        client.Send("THROW1|" + holdpoint.transform.position.x + "|" + holdpoint.transform.position.y + "|" + holdpoint.transform.position.z + "|" + this.gameObject.GetComponent<Rigidbody>().useGravity + "|" + this.gameObject.GetComponent<Rigidbody>().isKinematic);
     }
 
+    public void pick1(Vector3 pos, bool a, bool b)
+    {
+        if(client == true)
+        {
+            this.gameObject.GetComponent<Rigidbody>().useGravity = a;
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = b;
+            this.gameObject.transform.position = pos;
+            this.gameObject.transform.parent = postHold.transform;
+        }
+        
+    }
+
+    public void drop1(Vector3 pos, bool a, bool b)
+    {
+        if (client == true)
+        {
+            this.gameObject.GetComponent<Rigidbody>().useGravity = a;
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = b;
+            this.gameObject.transform.parent = null;
+            this.gameObject.transform.position = pos;
+        }
+
+    }
+
+    public void throw1(Vector3 pos, bool a, bool b)
+    {
+        if (client == true)
+        {
+            this.gameObject.GetComponent<Rigidbody>().useGravity = a;
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = b;
+            this.gameObject.transform.parent = null;
+            this.gameObject.transform.position = pos;
+
+            this.gameObject.GetComponent<Rigidbody>().AddForce(postHold.transform.up * upperForce);
+            this.gameObject.GetComponent<Rigidbody>().AddForce(postHold.transform.forward * throwForce);
+        }
+       
+
+        
+    }
 
     //Player 2
 
@@ -192,6 +242,9 @@ public class Object : MonoBehaviour
         this.gameObject.transform.position = holdpoint2.transform.position;
         this.gameObject.transform.rotation = holdpoint2.transform.rotation;
         this.gameObject.transform.parent = postHold2.transform;
+
+        client.Send("PICK2|" + this.gameObject.transform.position.x + "|" + this.gameObject.transform.position.y + "|" + this.gameObject.transform.position.z + "|" + this.gameObject.GetComponent<Rigidbody>().useGravity + "|" + this.gameObject.GetComponent<Rigidbody>().isKinematic);
+        melempar = false;
     }
     void drop2()
     {
@@ -199,6 +252,9 @@ public class Object : MonoBehaviour
         this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         this.gameObject.transform.parent = null;
         this.gameObject.transform.position = holdpoint2.transform.position;
+
+        client.Send("DROP2|" + this.gameObject.transform.position.x + "|" + this.gameObject.transform.position.y + "|" + this.gameObject.transform.position.z + "|" + this.gameObject.GetComponent<Rigidbody>().useGravity + "|" + this.gameObject.GetComponent<Rigidbody>().isKinematic);
+        melempar = true;
     }
     void throwy2()
     {
@@ -209,5 +265,64 @@ public class Object : MonoBehaviour
 
         this.gameObject.GetComponent<Rigidbody>().AddForce(postHold2.transform.up * upperForce);
         this.gameObject.GetComponent<Rigidbody>().AddForce(postHold2.transform.forward * throwForce);
+
+        client.Send("THROW2|" + this.gameObject.transform.position.x + "|" + this.gameObject.transform.position.y + "|" + this.gameObject.transform.position.z + "|" + this.gameObject.GetComponent<Rigidbody>().useGravity + "|" + this.gameObject.GetComponent<Rigidbody>().isKinematic);
+        melempar = true;
+    }
+
+    public void pick2(Vector3 pos, bool a, bool b)
+    {
+        this.gameObject.GetComponent<Rigidbody>().useGravity = a;
+        this.gameObject.GetComponent<Rigidbody>().isKinematic = b;
+        this.gameObject.transform.position = pos;
+        this.gameObject.transform.parent = postHold2.transform;
+
+        /*if (client == false)
+        {
+            this.gameObject.GetComponent<Rigidbody>().useGravity = a;
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = b;
+            this.gameObject.transform.position = pos;
+            this.gameObject.transform.parent = postHold2.transform;
+        }*/
+
+    }
+
+    public void drop2(Vector3 pos, bool a, bool b)
+    {
+        this.gameObject.GetComponent<Rigidbody>().useGravity = a;
+        this.gameObject.GetComponent<Rigidbody>().isKinematic = b;
+        this.gameObject.transform.parent = null;
+        this.gameObject.transform.position = pos;
+
+        /*if (client == false)
+        {
+            this.gameObject.GetComponent<Rigidbody>().useGravity = a;
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = b;
+            this.gameObject.transform.parent = null;
+            this.gameObject.transform.position = pos;
+        }*/
+
+    }
+
+    public void throw2(Vector3 pos, bool a, bool b)
+    {
+        this.gameObject.GetComponent<Rigidbody>().useGravity = a;
+        this.gameObject.GetComponent<Rigidbody>().isKinematic = b;
+        this.gameObject.transform.parent = null;
+        this.gameObject.transform.position = pos;
+
+        this.gameObject.GetComponent<Rigidbody>().AddForce(postHold2.transform.up * upperForce);
+        this.gameObject.GetComponent<Rigidbody>().AddForce(postHold2.transform.forward * throwForce);
+        
+        /*if (client == false)
+        {
+            this.gameObject.GetComponent<Rigidbody>().useGravity = a;
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = b;
+            this.gameObject.transform.parent = null;
+            this.gameObject.transform.position = pos;
+
+            this.gameObject.GetComponent<Rigidbody>().AddForce(postHold2.transform.up * upperForce);
+            this.gameObject.GetComponent<Rigidbody>().AddForce(postHold2.transform.forward * throwForce);
+        }*/
     }
 }

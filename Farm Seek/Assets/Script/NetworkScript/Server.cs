@@ -202,6 +202,19 @@ public class Server : MonoBehaviour
                 Broadcast("SMUTERKIRIP1|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
                 break;
 
+            case "PICK1":
+               Broadcast("SPICK1|" + aData[1] + "|" + aData[2] + "|" + aData[3] + "|" + aData[4] + "|" + aData[5], clients);
+                break;
+
+            case "DROP1":
+                Broadcast("SDROP1|" + aData[1] + "|" + aData[2] + "|" + aData[3] + "|" + aData[4] + "|" + aData[5], clients);
+                break;
+
+            case "THROW1":
+                Broadcast("STHROW1|" + aData[1] + "|" + aData[2] + "|" + aData[3] + "|" + aData[4] + "|" + aData[5], clients);
+                break;
+
+            //Player 2
             case "MAJUP2":
                 Broadcast("SMAJUP2|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
                 break;
@@ -216,6 +229,18 @@ public class Server : MonoBehaviour
                 break;
             case "MUTERKIRIP2":
                 Broadcast("SMUTERKIRIP2|" + aData[1] + "|" + aData[2] + "|" + aData[3], clients);
+                break;
+
+            case "PICK2":
+                Broadcast("SPICK2|" + aData[1] + "|" + aData[2] + "|" + aData[3] + "|" + aData[4] + "|" + aData[5], clients);
+                break;
+
+            case "DROP2":
+                Broadcast("SDROP2|" + aData[1] + "|" + aData[2] + "|" + aData[3] + "|" + aData[4] + "|" + aData[5], clients);
+                break;
+
+            case "THROW2":
+                Broadcast("STHROW2|" + aData[1] + "|" + aData[2] + "|" + aData[3] + "|" + aData[4] + "|" + aData[5], clients);
                 break;
         }
     }
