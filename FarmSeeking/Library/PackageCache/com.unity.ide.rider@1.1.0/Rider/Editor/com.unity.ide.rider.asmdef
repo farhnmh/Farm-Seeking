@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "name": "Unity.Rider.Editor",
     "references": [],
@@ -8,14 +7,3 @@
     ],
     "excludePlatforms": []
 }
-=======
-{
-    "name": "Unity.Rider.Editor",
-    "references": [],
-    "optionalUnityReferences": [],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": []
-}
->>>>>>> d7c7e4a905e041ffe305001e573a433cc87eb6b7
