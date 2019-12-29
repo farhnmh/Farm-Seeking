@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 1139671126
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: mainmenu
+      Dependencies: {}
+    Info_1:
+      Name: matchmaking
+      Dependencies: {}
+    Info_2:
+      Name: main
+      Dependencies: {}

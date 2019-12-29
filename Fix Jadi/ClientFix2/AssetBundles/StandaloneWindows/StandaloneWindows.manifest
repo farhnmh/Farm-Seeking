@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 3077570123
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: mainmenu
+      Dependencies: {}
+    Info_1:
+      Name: matchmaking
+      Dependencies: {}
+    Info_2:
+      Name: gamescene
+      Dependencies: {}

@@ -1,0 +1,32 @@
+ManifestFileVersion: 0
+CRC: 1703322785
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f6ca54119b21031ece89a7e76b105373
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: d8b7fb73b53012c0b47b74b955b605a4
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/MainMenu/background.prefab
+- Assets/Prefabs/MainMenu/title.prefab
+- Assets/Prefabs/MainMenu/exit.prefab
+- Assets/Prefabs/MainMenu/subTitle.prefab
+- Assets/Prefabs/MainMenu/play.prefab
+Dependencies: []
