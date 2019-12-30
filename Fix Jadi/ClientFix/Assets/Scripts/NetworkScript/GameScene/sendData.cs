@@ -57,7 +57,10 @@ public class sendData : MonoBehaviour
         player = new dataPlayer();
 
         start = true;
-        writer.WriteLine(pass.username);
+        writer.WriteLine(pass.usernameEncrypt);
+        writer.Flush();
+
+        writer.WriteLine(pass.password);
         writer.Flush();
 
         writer.WriteLine(Convert.ToString(pass.character));

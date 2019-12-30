@@ -68,7 +68,10 @@ public class receiveData : MonoBehaviour
         start = true;
         get.temp = true;
 
-        writer.WriteLine(pass.username);
+        writer.WriteLine(pass.usernameEncrypt);
+        writer.Flush();
+
+        writer.WriteLine(pass.password);
         writer.Flush();
 
         Thread Client = new Thread(joinServer);
